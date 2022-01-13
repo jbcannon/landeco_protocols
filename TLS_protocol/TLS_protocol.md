@@ -8,10 +8,6 @@ output:
     toc_depth: 6
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Introduction
 
 This is a *working* protocol for processing terrestrial lidar scans that we collect.
