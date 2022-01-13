@@ -51,7 +51,7 @@ of objects.
 
 <img src=img/underside_raw_scan.PNG width=400 alt="View beneath a tree from a single scan showing C shaped pattern of returns from one side of the tree"></img>
 
-Third, lidar scans are huge. A small area (0.16 ha or 40 $\times$ 40 m area) typically
+Third, lidar scans are huge. A small area (0.16 ha or 40 X 40 m area) typically
 comprises nearly 1GB of data. Proccessing this takes a lot of computer memory, so we must
 break the data into tiles (or `lidR::chunks`) to process a bit at a time.
 
