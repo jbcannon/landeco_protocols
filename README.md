@@ -2,7 +2,9 @@
 
 Repository for protocols for my lab
 
-![Tree segmentation with `spanner`](TLS_protocol/img/tree_seg_spanner.png | width=300)
+
+
+<img src='TLS_protocol/img/tree_seg_spanner.png' width=500>Tree segmentation with spanner</img>
 
 * [Protocol for processing TLS ](TLS_protocol/TLS_protocol.md | width=400)
   * Collecting scans [forthcoming]
