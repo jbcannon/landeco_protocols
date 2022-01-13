@@ -12,16 +12,16 @@ And also let us know if you run into issues.
 
 # Collecting Terrestrial Lidar Scans
 
-## Planning a scan
+## Planning a scan [in progress]
 
 * scan spacing, "lassoing", other considerations
 * software for selecting points
 
-## Collecting Scans
+## Collecting Scans [in progress]
 
 * scanner settings, naming projects, ensuring things are all stitch-able
 
-## Stitching scans using RiScan
+## Stitching scans using RiScan [in progress]
 
 * Overview
 * Step-by-step
@@ -29,7 +29,7 @@ And also let us know if you run into issues.
 * Is there a way to judge particularly bad scans Tanner?
 * Is there a way to stitch tile and export Tanner?
 
-## Storing/Saving/Backing up
+## Storing/Saving/Backing up [in progress]
 
 * Google Drive
 
