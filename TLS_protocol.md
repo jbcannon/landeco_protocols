@@ -423,6 +423,3 @@ tree_seg = 'C:/Users/jeffery.cannon/OneDrive - Joseph W. Jones Ecological Resear
 landecoutils::segment_with_spanner(las = in_las, bnd=bnd, stemmap_shp = out_map, tree_seg_las = tree_seg)
 
 ```
-
-
-
