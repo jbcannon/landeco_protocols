@@ -7,10 +7,6 @@ output:
   toc: true
 toc_depth: 6
 ---
-  
-  ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 # Introduction
 
