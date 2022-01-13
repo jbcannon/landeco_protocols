@@ -1,12 +1,6 @@
----
-title: "A *Working* Protocol for Processing Lidar Scans"
-author: "Jeffery B. Cannon"
-date: "1/11/2022"
-output:
-  html_document:
-    toc: true
-    toc_depth: 6
----
+# A *Working* Protocol for Processing Lidar Scans
+
+Jeffery Cannon
 
 # Introduction
 
@@ -49,14 +43,13 @@ First, scans can include lidar point returns up to 400 m, but only the
 first ~60 m of returns is usable. After that, returns are too sparse. Further,
 small errors in alignment (like a slight tilt) are magnified at larger distances
 
-![Raw lidar scan showing rapid decay of return density](img/raw_scan.PNG){width=400}
+<img src=img/raw_scan.PNG width=400 alt="Raw lidar scan showing rapid decay of return density with distance from scanner"></img>
 
 Second, lidar scans are taken from a fixed point and a single sscan can only see
 one side of an object. Multiple scans must be combined to capture all sides
 of objects.
 
-![View beneath a tree from a single scan showing C shaped pattern of returns 
-from one side of the tree](img/underside_raw_scan.PNG){width=400}
+<img src=img/underside_raw_scan.PNG width=400 alt="View beneath a tree from a single scan showing C shaped pattern of returns from one side of the tree"></img>
 
 Third, lidar scans are huge. A small area (0.16 ha or 40 $\times$ 40 m area) typically
 comprises nearly 1GB of data. Proccessing this takes a lot of computer memory, so we must
@@ -173,9 +166,9 @@ stitch_TLS_dir_to_LAS_tiles(ctg = ctg,
 
 ```
 
-![Demonstration of `stitch_TLS_dir_to_LAS_tiles` function showing scan locations
+<img src=img/stitch_TLS_dir_to_LAS_tiles.PNG width=400 alt="Demonstration of stitch_TLS_dir_to_LAS_tiles function showing scan locations
 (blue), over study boundary (thick rectange), and tiled grid of study
-area.](img/stitch_TLS_dir_to_LAS_tiles.PNG){width=400}
+area."></img>
 
 The function works by automatically setting up a tiled grid over the study boundary
 (`bnd`) and `buffer` you provide as specified by `tile_size`. For each tile in the
@@ -185,7 +178,7 @@ column names and the function rectifies that by choosing data common to all scan
 Each tile is saved in the directory specified by `out_dir` with file name basedon
 on the `XY` coordinate of the bottom left corner of each tile.
 
-![Example output of `stitch_TLS_dir_to_LAS_tiles` with 30 m tile size](img/stitched_tiles_output.png){width=600}
+<img src=img/stitched_tiles_output.png width=600 alt="Example output of stitch_TLS_dir_to_LAS_tiles with 30 m tile size"></img>
 
 ### Procedure: Merge small area (no tiling)
 
@@ -236,7 +229,7 @@ an isolated voxel filter (`ivf()`) to remove all points that don’t have a cert
 number of points (`n`) in the neighboring voxels with size specified by `res`. I
 have found that `ivf(res = 0.1, n = 15)` works for most issues encountered to date.
 
-![Example of tiled TLS scan with noise to be removed](img/denoise.png){width=400}
+<img src=img/denoise.png width=400 alt="Example of tiled TLS scan with noise to be removed"></img>
 
 #### Procedure: Noise removal on single file
 
@@ -283,7 +276,7 @@ the scan that is misaligned from the other merged scans. *This may be easier don
 at the earlier stage of stitching scans in RiScan*. However, they can also be
 removed later using the following procedure and code
 
-![Example of misregistration errors leading to duplicate trees](img/misregistration_errors.png){width=600}
+<img src=img/misregistration_errors.png width=600 alt="Misregistration due to wind movement. Note that trunk (white error) has no issues but small branches (red arrows) are apparently misaligned"></img>
 
 Note that not all mis-alignments are due to registration. Wind can move plant parts
 between scans and make it appear as though the scan has minor misregistation. In
@@ -296,7 +289,7 @@ The effect of this kind of misregistration is minimal, as we are generally focus
 on larger trees and trunks which don't move in the wind. So you can ignore this type
 of registration error.
 
-![Misregistration due to wind movement. Note that trunk (white error) has no issues but small branches (red arrows) are apparently misaligned](img/misregistration_wind.png){width=400}
+<img alt="Misregistration due to wind movement. Note that trunk (white error) has no issues but small branches (red arrows) are apparently misaligned" src=img/misregistration_wind.png width=400></img>
 
 #### Procedure: Removing misregistration errors
 
@@ -312,9 +305,9 @@ display ranges of the `gpstime` attribute until you've identified the returns yo
 want to remove. In the case below the green points need to be removed. These are
 prepresented by 3 peaks in the display range window.
 
-![Using the `gpstime` attribute to isolate duplicated and misregistered returnsin CloudCompare](img/misregistration_gpstime.png){width=600}
+<img alt="Using the gpstime attribute to isolate duplicated and misregistered returnsin CloudCompare" src=img/misregistration_gpstime.png width=600></img>
 
-![Histogram of `gpstime` attribute and area to be filtered out](img/gpstime_histogram.png){width=400}
+<img alt="Histogram of  gpstime attribute and area to be filtered out" src=img/gpstime_histogram.png width=400></img>
 
 Now using R, you can load the tile, view a histogram of the `gpstime` attribute,
 note the range of times to remove, and filter them out using the following code
@@ -362,13 +355,13 @@ put simply flips a lidar scan upside down and "drapes" a surface over the bottom
 to generate an elevation model. The elevation is then subtracted from each point
 to flatten out and remove elevation from the scan.
 
-![Diagram of cloth simulation filter (Figure from Zhang et al. 2016 *Remote Sensing*)](img/zhang2016_csf.png){width=400}
+<img src=img/zhang2016_csf.png width=400 alt="Diagram of cloth simulation filter (Figure from Zhang et al. 2016 Remote Sensing)"></img>
 
 2. **Filter**: In order to see through the vegetation, we filter out all low
 intensity points. This removes vegetation to reveal the tree boles and also
 reduces the point density speeding up later processing.
 
-![Example of intensity filter used to remove most vegetation and reveal tree boles](img/bole_intensity_filter.png){width=600}
+<img src=img/bole_intensity_filter.png width=600 alt="Example of intensity filter used to remove most vegetation and reveal tree boles"></img>
 
 3. **Cylinder search** Most tree finding algorithms take a horizontal 'slice'
 of the data and try to fit cylinders around the stems that it finds. `spanner` does
@@ -376,14 +369,14 @@ just that, but it also uses information on vertical alignment of points to help
 find trees. No algorithm is perfect. The settings below have done the best at
 capturing smaller trees.
 
-![example of horizontal slice taken from 1 to 2 m to use for cylinder fitting in `spanner`](img/tls_slice.png){width=600}
+<img src=img/tls_slice.png width=600 alt="example of horizontal slice taken from 1 to 2 m to use for cylinder fitting in spanner"></img>
 
 4. **Tree segmentation** Now that we know where the tree are, we need to associate
 all of the points that belong to the same tree together. The `spanner` package
 does this using graph theory. Trees are "grown" from their location on the ground
 and nearby points are successively added until all points are assigned.
 
-![Example TLS scan with high sapling density segmented with `spanner`](img/tree_seg_spanner.png){width=600}
+<img src=img/tree_seg_spanner.png width=600 alt="Example TLS scan with high sapling density segmented with spanner"></img>
 
 5. **Cleanup** Lastly, we do a few housekeeping steps. Whole or partial trees
 near the scan edges may not have been successfully assigned (edge effects) so we
