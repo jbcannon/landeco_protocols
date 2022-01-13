@@ -12,8 +12,6 @@ This protcol contains information for
 * Denoise and repair registration errors
 * Stem map using `spanner`
 
-[Protocol for processing TLS ](TLS_protocol/TLS_protocol.md)
+[A *Working* Protocol for processing TLS ](TLS_protocol/TLS_protocol.md)
 
 <img src='TLS_protocol/img/tree_seg_spanner.png' width=500 alt="Tree segmentation with spanner"></img>
-
-* 
