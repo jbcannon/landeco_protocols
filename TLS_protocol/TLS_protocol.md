@@ -151,7 +151,10 @@ ctg = readLAScatalog('E:/ecofor_segmentation/raw_scans/Plot_3')
 # shapefile indicating Plot boundary. Here we have to subet Plot 3
 bnd = st_read(
   'R:/landscape_ecology/projects/eco_for/overstory_pattern/shp/ecoforplots.shp')
-bnd = subset(bnd, PlotID==3)
+bnd = subset(bnd, PlotID==3) #if needed, subset feature by some attribute to get a single polygon
+
+# Make sure bnd has same crs as ctg
+bnd = st_transform(bnd, st_crs(ctg))
 
 # This function finds the "center" of all scans so we can delete points > 60 m away
 scan_locations = find_ctg_centroids(ctg)
@@ -206,6 +209,8 @@ ctg = readLAScatalog('E:/ecofor_segmentation/raw_scans/Plot_11') # Path to folde
 # Load a shapefile with the area of interest (e.g., ~0.2 ha)
 bnd = st_read('R:/landscape_ecology/projects/eco_for/click_mapping_2021/click_mapping_ground_truth/grid-cells.shp')
 bnd = subset(bnd, Plot==11 & cell == 90) #subsets bnd to only the Plot and cell of interest.
+# Make sure bnd has same crs as ctg
+bnd = st_transform(bnd, st_crs(ctg))
 
 scan_locations = find_ctg_centroids(ctg)
 stitch_TLS_dir_to_LAS(ctg = ctg,
