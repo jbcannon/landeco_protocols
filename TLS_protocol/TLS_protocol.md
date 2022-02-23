@@ -404,6 +404,7 @@ ctg = readLAScatalog('E:/ecofor_segmentation/tiled_scans/Plot_1/')
 opt_chunk_size(ctg)=30 #specify chunk size
 opt_chunk_alignment(ctg) = c(739496, 3458444) #choose a corner to 'snap grid' to. try ctg$filename to get locations
 opt_chunk_buffer(ctg) = 5 #buffer of at least 5 is needed so that crowns aren't chopped
+opt_filter(ctg) = '-thin_with_voxel 0.0254'  #downsample las to 1 inch spacing to speed up processing time.
 plot(ctg, chunk=TRUE)
 
 # Basic stem mapping function
