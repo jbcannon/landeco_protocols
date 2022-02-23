@@ -391,7 +391,52 @@ the segmented trees.
 Take look at the code below and see if you can identify where each of these
 steps take place. And find a few that I glossed over.
 
-## Procedure: Stem mapping
+## Procedure: Stem mapping (large area, big trees only)
+
+This code will allow you to stem map a large area using the `TreeLS` package. But warning, it typically only captures the large trees > 5 - 10 cm. You'll need to use `bi0me3trics/spanner` package to get smaller stems
+
+```
+library(lidR)
+library(TreeLS)
+library(sf)
+
+ctg = readLAScatalog('E:/ecofor_segmentation/tiled_scans/Plot_1/')
+opt_chunk_size(ctg)=30 #specify chunk size
+opt_chunk_alignment(ctg) = c(739496, 3458444) #choose a corner to 'snap grid' to. try ctg$filename to get locations
+opt_chunk_buffer(ctg) = 5 #buffer of at least 5 is needed so that crowns aren't chopped
+plot(ctg, chunk=TRUE)
+
+# Basic stem mapping function
+tls_mapping = function(chunk) {
+las = readLAS(chunk)
+if (is.empty(las)) return(NULL)
+bnd = sf::st_as_sfc(sf::st_bbox(chunk))
+bnd = sf::st_transform(bnd, sf::st_crs(las))
+
+#normalize las
+las = lidR::classify_ground(las, lidR::csf(class_threshold = 0.1))
+las = lidR::normalize_height(las, lidR::tin())
+las = lidR::filter_poi(las, Classification != 2)
+
+# map trees using TreeLS
+map = treeMap(las, map.hough())
+las = treePoints(las, map, trp.crop(circle=FALSE))
+las = stemPoints(las, stm.hough())
+inv = tlsInventory(las, d_method = shapeFit(shape = 'circle', algorithm='ransac', n=20))
+
+#clip and export stemmap
+stemmap = sf::st_as_sf(inv, coords=c('X', 'Y'), crs=st_crs(las))
+stemmap=sf::st_crop(stemmap, bnd)
+return(stemmap)
+}
+
+output_stemmap = catalog_apply(ctg, tls_mapping) #run stemmapping function on catalog tiles/chunks
+final_map = do.call(rbind, output_stemmap) #combine outputs from all tiles
+plot(final_map$geometry)
+st_write(final_map, 'E:/Site3/output-stemmap.shp', driver='ESRI Shapefile') #write to file
+```
+
+## Procedure: Stem mapping (small area)
 
 To stem map TLS tiles, use the following code. This works on small tiles, but
 you'll need to use something like catalog apply for large areas.
