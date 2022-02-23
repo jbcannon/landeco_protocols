@@ -409,26 +409,26 @@ plot(ctg, chunk=TRUE)
 
 # Basic stem mapping function
 tls_mapping = function(chunk) {
-las = readLAS(chunk)
-if (is.empty(las)) return(NULL)
-bnd = sf::st_as_sfc(sf::st_bbox(chunk))
-bnd = sf::st_transform(bnd, sf::st_crs(las))
+ las = readLAS(chunk)
+ if (is.empty(las)) return(NULL)
+ bnd = sf::st_as_sfc(sf::st_bbox(chunk))
+ bnd = sf::st_transform(bnd, sf::st_crs(las))
 
-#normalize las
-las = lidR::classify_ground(las, lidR::csf(class_threshold = 0.1))
-las = lidR::normalize_height(las, lidR::tin())
-las = lidR::filter_poi(las, Classification != 2)
+ #normalize las
+ las = lidR::classify_ground(las, lidR::csf(class_threshold = 0.1))
+ las = lidR::normalize_height(las, lidR::tin())
+ las = lidR::filter_poi(las, Classification != 2)
 
-# map trees using TreeLS
-map = treeMap(las, map.hough())
-las = treePoints(las, map, trp.crop(circle=FALSE))
-las = stemPoints(las, stm.hough())
-inv = tlsInventory(las, d_method = shapeFit(shape = 'circle', algorithm='ransac', n=20))
+ # map trees using TreeLS
+ map = treeMap(las, map.hough())
+ las = treePoints(las, map, trp.crop(circle=FALSE))
+ las = stemPoints(las, stm.hough())
+ inv = tlsInventory(las, d_method = shapeFit(shape = 'circle', algorithm='ransac', n=20))
 
-#clip and export stemmap
-stemmap = sf::st_as_sf(inv, coords=c('X', 'Y'), crs=st_crs(las))
-stemmap=sf::st_crop(stemmap, bnd)
-return(stemmap)
+ #clip and export stemmap
+ stemmap = sf::st_as_sf(inv, coords=c('X', 'Y'), crs=st_crs(las))
+ stemmap=sf::st_crop(stemmap, bnd)
+ return(stemmap)
 }
 
 output_stemmap = catalog_apply(ctg, tls_mapping) #run stemmapping function on catalog tiles/chunks
