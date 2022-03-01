@@ -33,6 +33,43 @@ And also let us know if you run into issues.
 
 * Google Drive
 
+## Incorporating scans into TLS database
+
+Tanner, we'll need to flesh this out more, but here's code for extracting coordinates
+
+Within the TLS database we store to locations of scan locations. You can use this script in R to extract scan locations automatically. Script requires installation of the `landecoutils`, `sf`, and `lidR` packages.
+
+```
+# Load libraries
+library(sf)
+library(lidR)
+library(landecoutils)
+
+# Input folder containing LAS files
+las_directory = 'E:/BigPlot_LASb/'
+# Path to csv file to save output table
+output_csv = 'E:/bigplot_scan_locations.csv'
+
+
+ctg = readLAScatalog('E:/BigPlot_LASb/') #read in LASCatalog
+scan_locations = find_ctg_centroids(ctg) #find centroids
+
+# Add coordinates to table
+scan_locations[, c('X', 'Y')] = st_coordinates(scan_locations)
+scan_locations[, c('lon', 'lat')] = st_coordinates(st_transform(scan_locations, st_crs(4326))) #convert to wgs84
+
+# Clean up table
+scan_locations = st_drop_geometry(scan_locations)
+rownames(scan_locations)= NULL
+scan_locations$id = NULL
+
+# Save to disk
+print(scan_locations)
+write.csv(scan_locations, output_csv, row.names=FALSE)
+
+print(scan_locations)
+```
+
 # Pre-processing scans
 
 ### Background
