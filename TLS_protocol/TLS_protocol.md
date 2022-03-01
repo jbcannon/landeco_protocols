@@ -50,7 +50,6 @@ las_directory = 'E:/BigPlot_LASb/'
 # Path to csv file to save output table
 output_csv = 'E:/bigplot_scan_locations.csv'
 
-
 ctg = readLAScatalog('E:/BigPlot_LASb/') #read in LASCatalog
 scan_locations = find_ctg_centroids(ctg) #find centroids
 
@@ -66,8 +65,6 @@ scan_locations$id = NULL
 # Save to disk
 print(scan_locations)
 write.csv(scan_locations, output_csv, row.names=FALSE)
-
-print(scan_locations)
 ```
 
 # Pre-processing scans
