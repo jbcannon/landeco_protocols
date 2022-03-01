@@ -37,7 +37,7 @@ And also let us know if you run into issues.
 
 Tanner, we'll need to flesh this out more, but here's code for extracting coordinates
 
-Within the TLS database we store to locations of scan locations. You can use this script in R to extract scan locations automatically. Script requires installation of the `landecoutils`, `sf`, and `lidR` packages.
+Within the TLS database we store to locations of scan locations. You can use this script in R to extract scan locations automatically. Script requires installation of the `landecoutils`, `sf`, and `lidR` packages. See [Install all software]([#install-all-software) below if you need guidance installing these packages. Compilation of `landecoutils` package additionally requires the installation of Rtools. 
 
 ```
 # Load libraries
