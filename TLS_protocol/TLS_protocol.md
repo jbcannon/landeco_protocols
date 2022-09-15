@@ -19,9 +19,9 @@ And also let us know if you run into issues.
 
 ## Collecting Scans [in progress]
 
-- Set up tripod (set at height where the scanner is approximately six feet high when mounted)
-- Remove the scanner from its case and attach the Battery Mount/Charging Station (can already have batteries installed or they can be added after) by using the T-handle Allen wrench
-- Attach the GNSS antenna to the top of the scanner, sit the assembled scanner on the tripod, and use the underside attachment screw on the tripod to secure it
+1. Set up tripod (set at height where the scanner is approximately six feet high when mounted)
+2. Remove the scanner from its case and attach the Battery Mount/Charging Station (can already have batteries installed or they can be added after) by using the T-handle Allen wrench
+3. Attach the GNSS antenna to the top of the scanner, sit the assembled scanner on the tripod, and use the underside attachment screw on the tripod to secure it
  - Ensure three batteries are installed and press “Power On” to start scanner
 - Open the Workflow Manager settings page and select the desired settings:
  - Project georeferencing is best left as “Auto”
