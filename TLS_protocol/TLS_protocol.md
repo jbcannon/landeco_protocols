@@ -19,25 +19,25 @@ And also let us know if you run into issues.
 
 ## Collecting Scans [in progress]
 
-1. Set up tripod (set at height where the scanner is approximately six feet high when mounted)
-2. Remove the scanner from its case and attach the Battery Mount/Charging Station (can already have batteries installed or they can be added after) by using the T-handle Allen wrench
-3. Attach the GNSS antenna to the top of the scanner, sit the assembled scanner on the tripod, and use the underside attachment screw on the tripod to secure it
- - Ensure three batteries are installed and press “Power On” to start scanner
+- Set up tripod (set at height where the scanner is approximately six feet high when mounted)
+- Remove the scanner from its case and attach the Battery Mount/Charging Station (can already have batteries installed or they can be added after) by using the T-handle Allen wrench
+- Attach the GNSS antenna to the top of the scanner, sit the assembled scanner on the tripod, and use the underside attachment screw on the tripod to secure it
+  - Ensure three batteries are installed and press “Power On” to start scanner
 - Open the Workflow Manager settings page and select the desired settings:
- - Project georeferencing is best left as “Auto”
- -	Pose estimation set as “Fast” is adequate for most situations
- -	Registration settings is best left as off
- -	For Scan configuration, “Measurement Program” will almost always be 1200 kHz since it is best for shorter range targets in denser areas, such as forests
- - “Scan Pattern” will mostly be Panorama_40 unless much more detailed scans are desired, in which case Panorama_20 could be used. Panorama_20 scans are much larger in size due to increased point density, and scans take approximately three minutes as compared to forty-five seconds for Pan_40.
- -	Reflector search and reflector scans should be off unless reflectors with recorded sub-meter coordinates are set up, in which case the RIEGL training for reflector scans and processing should be referred to
- -	Image acquisition can be left off unless a RIEGL camera is purchased
- -	Cloud storage does not need to be enabled
+  - Project georeferencing is best left as “Auto”
+  -	Pose estimation set as “Fast” is adequate for most situations
+  -	Registration settings is best left as off
+  -	For Scan configuration, “Measurement Program” will almost always be 1200 kHz since it is best for shorter range targets in denser areas, such as forests
+  - “Scan Pattern” will mostly be Panorama_40 unless much more detailed scans are desired, in which case Panorama_20 could be used. Panorama_20 scans are much larger in size due to increased point density, and scans take approximately three minutes as compared to forty-five seconds for Pan_40.
+  -	Reflector search and reflector scans should be off unless reflectors with recorded sub-meter coordinates are set up, in which case the RIEGL training for reflector scans and processing should be referred to
+  -	Image acquisition can be left off unless a RIEGL camera is purchased
+  -	Cloud storage does not need to be enabled
 -	Click the green “Go!” icon on the scanner’s main screen
 -	On the Start Workflow page
- -	Choose Internal SSD as the Storage Media
- -	Name the Project (best practice is name of plot/project and date, e. g. PlotX_YYYYMMDD) 
- -	Ensure that Scanposition starts at ScanPos001
- -	OneTouch Workflow is adequate
+  - Choose Internal SSD as the Storage Media
+  -	Name the Project (best practice is name of plot/project and date, e. g. PlotX_YYYYMMDD) 
+  - Ensure that Scanposition starts at ScanPos001
+  - OneTouch Workflow is adequate
 -	Press the “Start” button on the screen to initiate the scan (either duck down or walk around the scanner to stay out of sight of the laser)
 -	Move the scanner to the next desired scan position by either eyesight or by navigating with Avenza/GPS, and ensure that Scanposition says ScanPos00X before pressing the “Start” button again
  -	If an area seems too dense for the regular scan spacing to capture completely, it is best to scan from additional positions around the area in question. Make sure to keep all scans within ~30m of a previous scan position for best registration results
