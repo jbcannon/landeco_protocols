@@ -17,7 +17,7 @@ And also let us know if you run into issues.
 * scan spacing, "lassoing", other considerations
 * software for selecting points
 
-## Collecting Scans [in progress]
+## Collecting Scans
 
 - Set up tripod (set at height where the scanner is approximately six feet high when mounted)
 - Remove the scanner from its case and attach the Battery Mount/Charging Station (can already have batteries installed or they can be added after) by using the T-handle Allen wrench
